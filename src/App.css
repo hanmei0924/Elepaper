@@ -1,10 +1,12 @@
+  
+*{
+  box-sizing: border-box;
+}
 .App {
- 
   text-align: center;
-  text-indent:5%;
   background: #67B26F;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #e4916a, #e6c276);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #2BC0E4, #EAECC6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, #2BC0E4, #9e76e9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -21,6 +23,8 @@
   font-size:1.2rem;
   color: rgb(255, 255, 255);
   font-weight: bold;
+ 
+  Justify-content:space-between;
 }
 .logo{
   height:2rem;
@@ -33,8 +37,6 @@
 }
 
 .messages{
-  
-  text-align: left;
   display: flex;
   flex-direction: column-reverse;
   flex: 1;
@@ -42,28 +44,24 @@
 }
 .message-row{
   width:100%;
+  display: flex;
 }
 .message{
-  
-  background:black;
+  background:rgb(37, 223, 151);
   color:white;
   border-radius:10px;
-  margin:-1px;
+  margin:25px;
   display: inline-block;
   padding: 4px 12px;
-
+  position: relative;
 }
-
-.triangle-topleft {
-  
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 10px 15px 0 0;
-  border-color: #000000 transparent transparent transparent;
-  margin-left: 6%;
-  margin-bottom: 5%;
-
+.message-name{
+  position: absolute;
+  top: -15px;
+  left: 7px;
+  font-size: 0.55rem;
+  color:rgb(255, 255, 255);
+  font-weight: bold;
 }
 
 
@@ -80,7 +78,7 @@
 .send-button{
   position:absolute;
   right:0.65rem;
-  top:;
+  top:0.35rem;
   border-radius:100%;
   border:2px solid white;
   background:rgb(10, 146, 209);
@@ -117,25 +115,46 @@
 
 
 
-/* mobile */
-html {
-  font-size: 14px;
+
+.inputx{
+  border:1px solid white;
+  border-radius:1.6rem;
+  height:1.6rem;
+  width:calc(100% - 20px);
+  background: rgba(0,0,0,0.85);
+  color:white;
+  padding:0 10px;
+  outline:none;
 }
-/* tablet */
-@media only screen and (min-width: 480px) {
-  html {
-      font-size: 16px;
-  }
+.send-buttonx{
+  position:absolute;
+  right:12px;
+  top:0.55rem;
+  border-radius:100%;
+  background:white;
+  color:black;
+  border:none;
+  height: 1.4rem;
+  width: 1.4rem;
+  cursor: pointer;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  outline:none;
 }
-/* desktop */
-@media only screen and (min-width: 768px) {
-  html {
-      font-size: 18px;
-  }
+.send-buttonx[disabled]{
+  cursor: default;
+  background:rgb(128, 128, 128);
 }
-/* extra large */
-@media only screen and (min-width: 1024px) {
-  html {
-      font-size: 20px;
-  }
+
+.name-picker{
+  
+  display: flex;
+  margin:0 12px;
 }
+.name-picker input {
+  max-width:100px;
+}
+
+ 
