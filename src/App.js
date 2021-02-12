@@ -1,19 +1,29 @@
-
-import { useState } from 'react';
+import {useState} from 'react';
 import './App.css';
 import TextInput from './TextInput';
 import Message from './Message'
 import NamePicker from './NamePicker'
 import {db, useDB} from './db'
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
+export default function Wrap() {
+  return <BrowserRouter>
+    <Switch>
+      <Route exact path="/" component={App} />
+      <Route exact path="/:room" component={App} />
+    </Switch>
+  </BrowserRouter>
+}
 
-function App() {
-  const messages = useDB()
+function App(props) {
+  const room = props.match.params.room || 'home'
+
+  const messages = useDB(room)
   const [username,setUsername] = useState(
     localStorage.getItem('username') || ''
   )
 
-  console.log(messages)
+  // console.log(messages)
   return <div className="App">
  
     <header className="header">
@@ -21,7 +31,7 @@ function App() {
       ELEPAPER
       <NamePicker saveName={setUsername} />
     </header>
-    
+
     <main className="messages">
       {messages.map((msg,i)=> {
         const isMe = msg.name===username
@@ -30,10 +40,8 @@ function App() {
     </main>
 
     <TextInput 
-      send={(t)=> db.send({text:t, name:username, date:new Date()})}
+      send={(t)=> db.send({text:t, name:username, date:new Date(), room})}
     />
 
   </div>
 }
-
-export default App;
